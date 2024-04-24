@@ -1,5 +1,5 @@
 from typing import Any
-
+from collections.abc import Iterable, Sized
 
 class adict(dict):
     """
@@ -7,19 +7,8 @@ class adict(dict):
     """
 
     def __init__(self, *args, **kwargs):
-        super(adict, self).__init__()
-
-        for __arg in args:
-            if not isinstance(__arg, dict):
-                raise AttributeError(__arg)
-            for __name, __value in __arg.items():
-                if isinstance(__value, dict):
-                    self.__setattr__(__name, self.__class__(__value))
-                self.__setattr__(__name, __value)
-
-        for __name, __value in kwargs.items():
-            if isinstance(__value, dict):
-                self.__setattr__(__name, self.__class__(__value))
+        super(adict, self).__init__(*args, **kwargs)
+        for __name, __value in self.items():
             self.__setattr__(__name, __value)
 
     def __getattr__(self, __name: str) -> Any:
