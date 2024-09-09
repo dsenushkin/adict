@@ -1,5 +1,5 @@
 from typing import Any
-from collections.abc import Iterable, Sized
+
 
 class adict(dict):
     """
@@ -35,6 +35,6 @@ class adict(dict):
         self.__dict__.update(state)
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(%s)" % f", ".join([
+        return f"{self.__class__.__name__}(%s)" % ", ".join([
             f"{__name}={__value}" for __name, __value in self.items()
         ])
