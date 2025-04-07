@@ -23,6 +23,8 @@ class adict(dict):
             self[__name] = self.__class__(__value)
         else:
             self[__name] = __value
+        # this appends attribute to the class
+        object.__setattr__(self, __name, __value)
 
     def __delattr__(self, __name: str) -> None:
         if __name in self:
